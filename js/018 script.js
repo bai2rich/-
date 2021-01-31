@@ -14,3 +14,71 @@ P.S. Функции вызывать не обязательно*/
 'use strict';
 
 // Код возьмите из предыдущего домашнего задания
+
+let numberOfFilms;
+
+function sart() {
+    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+        numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+    }    
+}
+
+sart();
+    
+const personalMovieDB = {
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    gendere: [],
+    privat: false
+};
+
+function rememberMyFilms() {
+    for (let i = 0; i < 2; i++) {
+        const a = prompt('Один из последних просмотренных фильмов?', ''),
+          b = prompt('На сколько оцените его?', '');
+    
+        if (a !=null && b !=null && a!='' && b != '' && a.length < 50) {
+            personalMovieDB.movies[a] = b; 
+            console.log('done');
+        }  else {
+            console.log('error');
+            i--;
+        }
+    }
+}
+
+// rememberMyFilms();
+
+function detectPersonalLavel() {
+    if (personalMovieDB.count < 10) {
+        console.log('nott many films');
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+        console.log('classic customer');
+    
+    } else if (personalMovieDB.count >= 30) {
+        console.log('planty films');
+    } else {
+        console.log('errorrr');
+    }
+}
+
+// detectPersonalLavel();
+
+function showMyDB(hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
+    }
+}
+
+showMyDB(personalMovieDB.privat);
+
+function wrieYourGeners() {
+    for (let i = 1; i <= 3; i++) {
+       personalMovieDB.gendere[i - 1] =  prompt(`Ваш любимый жанр под номером ${i}`);
+    }
+}
+
+wrieYourGeners();
